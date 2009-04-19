@@ -60,7 +60,9 @@ public final class Score {
   }
   
   public static int getSpeed() {
-    return speed;
+    double x = lines / 200;
+    double y = java.lang.Math.pow(x*6+1, -x);
+    return (int)(1000 * y) + 1;
   }
   
   public static void incLines(int n) {
@@ -69,7 +71,7 @@ public final class Score {
     score += n * fibonacci(chain) * (lines+10);
     lines += n;
     if (time == 0) {
-      timer.schedule(1000);
+      timer.schedule(getSpeed());
     }
     time += 3;
     setHTML();
